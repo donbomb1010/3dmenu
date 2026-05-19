@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Qubeso Cafe</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      background:
+      linear-gradient(
+        to bottom,
+        #0f172a,
+        #020617
+      );
+
+      font-family:Arial,sans-serif;
+
+      overflow-x:hidden;
+
+      color:white;
+
+    }
+
+    .hero{
+
+      min-height:100vh;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      padding:40px;
+
+      position:relative;
+
+    }
+
+    .container{
+
+      width:100%;
+
+      max-width:1400px;
+
+      display:flex;
+
+      flex-direction:column;
+
+      align-items:center;
+
+      justify-content:center;
+
+    }
+
+    .top{
+
+      width:100%;
+
+      height:70vh;
+
+      position:relative;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+    }
+
+    canvas{
+
+      width:100% !important;
+
+      height:100% !important;
+
+    }
+
+    .bottom{
+
+      width:100%;
+
+      max-width:900px;
+
+      margin-top:-50px;
+
+      position:relative;
+
+      z-index:5;
+
+    }
+
+    .glass{
+
+      background:
+      rgba(255,255,255,0.06);
+
+      border:
+      1px solid rgba(255,255,255,0.1);
+
+      backdrop-filter:blur(16px);
+
+      border-radius:40px;
+
+      padding:40px;
+
+      box-shadow:
+      0 20px 80px rgba(0,0,0,0.4);
+
+    }
+
+    .tag{
+
+      display:inline-block;
+
+      padding:10px 22px;
+
+      border-radius:50px;
+
+      background:
+      rgba(255,255,255,0.08);
+
+      border:
+      1px solid rgba(255,255,255,0.1);
+
+      margin-bottom:25px;
+
+      color:#f59e0b;
+
+      font-weight:bold;
+
+      letter-spacing:1px;
+
+    }
+
+    h1{
+
+      font-size:90px;
+
+      margin-bottom:20px;
+
+      background:
+      linear-gradient(
+        to right,
+        #f59e0b,
+        #ef4444
+      );
+
+      -webkit-background-clip:text;
+
+      -webkit-text-fill-color:transparent;
+
+      text-align:center;
+
+    }
+
+    .sub{
+
+      font-size:22px;
+
+      line-height:1.8;
+
+      color:#cbd5e1;
+
+      text-align:center;
+
+      margin-bottom:40px;
+
+    }
+
+    .menu{
+
+      display:flex;
+
+      flex-direction:column;
+
+      gap:25px;
+
+    }
+
+    .dish{
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      padding:25px;
+
+      border-radius:24px;
+
+      background:
+      rgba(255,255,255,0.04);
+
+      border:
+      1px solid rgba(255,255,255,0.06);
+
+      transition:0.3s;
+
+    }
+
+    .dish:hover{
+
+      transform:translateY(-5px);
+
+      background:
+      rgba(255,255,255,0.06);
+
+    }
+
+    .dish-left h2{
+
+      font-size:34px;
+
+      margin-bottom:8px;
+
+    }
+
+    .dish-left span{
+
+      color:#cbd5e1;
+
+      font-size:18px;
+
+    }
+
+    .price{
+
+      font-size:36px;
+
+      font-weight:bold;
+
+      color:#f59e0b;
+
+    }
+
+    .buttons{
+
+      margin-top:40px;
+
+      display:flex;
+
+      justify-content:center;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+    }
+
+    button{
+
+      padding:18px 40px;
+
+      border:none;
+
+      border-radius:50px;
+
+      font-size:18px;
+
+      cursor:pointer;
+
+      transition:0.3s;
+
+      font-weight:bold;
+
+    }
+
+    .primary{
+
+      background:
+      linear-gradient(
+        to right,
+        #f59e0b,
+        #ef4444
+      );
+
+      color:white;
+
+    }
+
+    .secondary{
+
+      background:
+      rgba(255,255,255,0.08);
+
+      border:
+      1px solid rgba(255,255,255,0.1);
+
+      color:white;
+
+    }
+
+    button:hover{
+
+      transform:scale(1.05);
+
+    }
+
+    .glow{
+
+      position:absolute;
+
+      width:300px;
+
+      height:300px;
+
+      border-radius:50%;
+
+      background:
+      radial-gradient(
+        circle,
+        rgba(245,158,11,0.35),
+        transparent
+      );
+
+      filter:blur(60px);
+
+      z-index:-1;
+
+    }
+
+    .g1{
+
+      top:10%;
+
+      left:10%;
+
+    }
+
+    .g2{
+
+      bottom:10%;
+
+      right:10%;
+
+    }
+
+    @media(max-width:900px){
+
+      h1{
+        font-size:52px;
+      }
+
+      .sub{
+        font-size:18px;
+      }
+
+      .dish-left h2{
+        font-size:24px;
+      }
+
+      .price{
+        font-size:24px;
+      }
+
+      .top{
+        height:50vh;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+  <section class="hero">
+
+
+    <div class="glow g1"></div>
+
+    <div class="glow g2"></div>
+
+
+    <div class="container">
+
+
+      <!-- 3D MODEL TOP -->
+
+      <div class="top">
+
+        <canvas id="canvas"></canvas>
+
+      </div>
+
+
+
+      <!-- MENU BOTTOM -->
+
+      <div class="bottom">
+
+        <div class="glass">
+
+
+          <div style="text-align:center;">
+
+            <div class="tag">
+              Premium Gujarati Cafe
+            </div>
+
+          </div>
+
+
+          <h1>Qubeso</h1>
+
+
+          <p class="sub">
+
+            Interactive 3D food menu experience with
+            premium modern cafe presentation.
+
+          </p>
+
+
+
+          <div class="menu">
+
+
+            <div class="dish">
+
+              <div class="dish-left">
+
+                <h2>Kachori</h2>
+
+                <span>
+                  Crispy spicy Gujarati kachori
+                </span>
+
+              </div>
+
+              <div class="price">
+                ₹500
+              </div>
+
+            </div>
+
+
+
+            <div class="dish">
+
+              <div class="dish-left">
+
+                <h2>Bhakharvadi</h2>
+
+                <span>
+                  Crunchy masala filled snack
+                </span>
+
+              </div>
+
+              <div class="price">
+                ₹300
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="buttons">
+
+            <button class="primary">
+              Order Now
+            </button>
+
+            <button class="secondary">
+              Explore Menu
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+
+
+  <!-- IMPORTMAP -->
+
+  <script type="importmap">
+
+  {
+    "imports": {
+
+      "three":
+      "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+
+    }
+  }
+
+  </script>
+
+
+
+  <!-- THREE JS -->
+
+  <script type="module">
+
+    import * as THREE from "three";
+
+    import { OrbitControls }
+
+    from
+    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+    import { GLTFLoader }
+
+    from
+    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+
+    import { MeshoptDecoder }
+
+    from
+    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/meshopt_decoder.module.js";
+
+
+
+    const canvas =
+      document.getElementById("canvas");
+
+
+
+    // SCENE
+
+    const scene =
+      new THREE.Scene();
+
+
+
+    // CAMERA
+
+    const camera =
+      new THREE.PerspectiveCamera(
+
+        45,
+
+        canvas.clientWidth /
+        canvas.clientHeight,
+
+        0.1,
+
+        1000
+
+      );
+
+    camera.position.set(0,0,4);
+
+
+
+    // RENDERER
+
+    const renderer =
+      new THREE.WebGLRenderer({
+
+        canvas,
+
+        antialias:true,
+
+        alpha:true
+
+      });
+
+    renderer.setSize(
+
+      canvas.clientWidth,
+
+      canvas.clientHeight
+
+    );
+
+    renderer.setPixelRatio(
+      window.devicePixelRatio
+    );
+
+
+
+    // LIGHTS
+
+    const ambientLight =
+      new THREE.AmbientLight(
+        0xffffff,
+        5
+      );
+
+    scene.add(ambientLight);
+
+
+
+    const directionalLight =
+      new THREE.DirectionalLight(
+        0xffffff,
+        8
+      );
+
+    directionalLight.position.set(
+      5,
+      10,
+      7
+    );
+
+    scene.add(directionalLight);
+
+
+
+    const orangeLight =
+      new THREE.PointLight(
+        0xf59e0b,
+        20
+      );
+
+    orangeLight.position.set(
+      -5,
+      5,
+      5
+    );
+
+    scene.add(orangeLight);
+
+
+
+
+    // CONTROLS
+
+    const controls =
+      new OrbitControls(
+        camera,
+        renderer.domElement
+      );
+
+    controls.enableDamping = true;
+
+    controls.enablePan = false;
+
+    controls.minDistance = 2;
+
+    controls.maxDistance = 8;
+
+
+
+
+    // MODEL
+
+    let model;
+
+    const loader =
+      new GLTFLoader();
+
+    loader.setMeshoptDecoder(
+      MeshoptDecoder
+    );
+
+
+
+    loader.load(
+
+      "./model1.glb",
+
+      function(gltf){
+
+        model = gltf.scene;
+
+        scene.add(model);
+
+
+
+
+        // CENTER MODEL
+
+        const box =
+          new THREE.Box3()
+          .setFromObject(model);
+
+        const center =
+          box.getCenter(
+            new THREE.Vector3()
+          );
+
+        model.position.sub(center);
+
+
+
+
+        // PERFECT SCALE
+
+        const size =
+          box.getSize(
+            new THREE.Vector3()
+          ).length();
+
+        const scale =
+          5 / size;
+
+        model.scale.setScalar(scale);
+
+
+
+
+        // POSITION TOP
+
+        model.position.y = 0.3;
+
+
+
+
+        // ROTATION
+
+        model.rotation.y = 0.5;
+
+      }
+
+    );
+
+
+
+
+    // ANIMATE
+
+    function animate(){
+
+      requestAnimationFrame(
+        animate
+      );
+
+      if(model){
+
+        model.rotation.y += 0.003;
+
+      }
+
+      controls.update();
+
+      renderer.render(
+        scene,
+        camera
+      );
+
+    }
+
+    animate();
+
+
+
+
+    // RESIZE
+
+    window.addEventListener(
+
+      "resize",
+
+      ()=>{
+
+        camera.aspect =
+
+          canvas.clientWidth /
+
+          canvas.clientHeight;
+
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(
+
+          canvas.clientWidth,
+
+          canvas.clientHeight
+
+        );
+
+      }
+
+    );
+
+  </script>
+
+</body>
+
+</html>

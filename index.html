@@ -1,805 +1,979 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-  <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <title>Qubeso Cafe</title>
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-
-      background:
-      linear-gradient(
-        to bottom,
-        #0f172a,
-        #020617
-      );
-
-      font-family:Arial,sans-serif;
-
-      overflow-x:hidden;
-
-      color:white;
-
-    }
-
-    .hero{
-
-      min-height:100vh;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      padding:40px;
-
-      position:relative;
-
-    }
-
-    .container{
-
-      width:100%;
-
-      max-width:1400px;
-
-      display:flex;
-
-      flex-direction:column;
-
-      align-items:center;
-
-      justify-content:center;
-
-    }
-
-    .top{
-
-      width:100%;
-
-      height:70vh;
-
-      position:relative;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-    }
-
-    canvas{
-
-      width:100% !important;
-
-      height:100% !important;
-
-    }
-
-    .bottom{
-
-      width:100%;
-
-      max-width:900px;
-
-      margin-top:-50px;
-
-      position:relative;
-
-      z-index:5;
-
-    }
-
-    .glass{
-
-      background:
-      rgba(255,255,255,0.06);
-
-      border:
-      1px solid rgba(255,255,255,0.1);
-
-      backdrop-filter:blur(16px);
-
-      border-radius:40px;
-
-      padding:40px;
-
-      box-shadow:
-      0 20px 80px rgba(0,0,0,0.4);
-
-    }
-
-    .tag{
-
-      display:inline-block;
-
-      padding:10px 22px;
-
-      border-radius:50px;
-
-      background:
-      rgba(255,255,255,0.08);
-
-      border:
-      1px solid rgba(255,255,255,0.1);
-
-      margin-bottom:25px;
-
-      color:#f59e0b;
-
-      font-weight:bold;
-
-      letter-spacing:1px;
-
-    }
-
-    h1{
-
-      font-size:90px;
-
-      margin-bottom:20px;
-
-      background:
-      linear-gradient(
-        to right,
-        #f59e0b,
-        #ef4444
-      );
-
-      -webkit-background-clip:text;
-
-      -webkit-text-fill-color:transparent;
-
-      text-align:center;
-
-    }
-
-    .sub{
-
-      font-size:22px;
-
-      line-height:1.8;
-
-      color:#cbd5e1;
-
-      text-align:center;
-
-      margin-bottom:40px;
-
-    }
-
-    .menu{
-
-      display:flex;
-
-      flex-direction:column;
-
-      gap:25px;
-
-    }
-
-    .dish{
-
-      display:flex;
-
-      justify-content:space-between;
-
-      align-items:center;
-
-      padding:25px;
-
-      border-radius:24px;
-
-      background:
-      rgba(255,255,255,0.04);
-
-      border:
-      1px solid rgba(255,255,255,0.06);
-
-      transition:0.3s;
-
-    }
-
-    .dish:hover{
-
-      transform:translateY(-5px);
-
-      background:
-      rgba(255,255,255,0.06);
-
-    }
-
-    .dish-left h2{
-
-      font-size:34px;
-
-      margin-bottom:8px;
-
-    }
-
-    .dish-left span{
-
-      color:#cbd5e1;
-
-      font-size:18px;
-
-    }
-
-    .price{
-
-      font-size:36px;
-
-      font-weight:bold;
-
-      color:#f59e0b;
-
-    }
-
-    .buttons{
-
-      margin-top:40px;
-
-      display:flex;
-
-      justify-content:center;
-
-      gap:20px;
-
-      flex-wrap:wrap;
-
-    }
-
-    button{
-
-      padding:18px 40px;
-
-      border:none;
-
-      border-radius:50px;
-
-      font-size:18px;
-
-      cursor:pointer;
-
-      transition:0.3s;
-
-      font-weight:bold;
-
-    }
-
-    .primary{
-
-      background:
-      linear-gradient(
-        to right,
-        #f59e0b,
-        #ef4444
-      );
-
-      color:white;
-
-    }
-
-    .secondary{
-
-      background:
-      rgba(255,255,255,0.08);
-
-      border:
-      1px solid rgba(255,255,255,0.1);
-
-      color:white;
-
-    }
-
-    button:hover{
-
-      transform:scale(1.05);
-
-    }
-
-    .glow{
-
-      position:absolute;
-
-      width:300px;
-
-      height:300px;
-
-      border-radius:50%;
-
-      background:
-      radial-gradient(
-        circle,
-        rgba(245,158,11,0.35),
-        transparent
-      );
-
-      filter:blur(60px);
-
-      z-index:-1;
-
-    }
-
-    .g1{
-
-      top:10%;
-
-      left:10%;
-
-    }
-
-    .g2{
-
-      bottom:10%;
-
-      right:10%;
-
-    }
-
-    @media(max-width:900px){
-
-      h1{
-        font-size:52px;
-      }
-
-      .sub{
-        font-size:18px;
-      }
-
-      .dish-left h2{
-        font-size:24px;
-      }
-
-      .price{
-        font-size:24px;
-      }
-
-      .top{
-        height:50vh;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Qubeso Cafe</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+
+<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter,sans-serif;
+background:#ece7df;
+padding:18px;
+overflow-x:hidden;
+}
+
+.app{
+background:#f5ede2;
+border-radius:24px;
+padding:18px;
+min-height:100vh;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.navbar{
+height:72px;
+background:#fff9f3;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 28px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:700;
+font-size:22px;
+}
+
+.logo-icon{
+width:34px;
+height:34px;
+border-radius:10px;
+background:#f4b16e;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.nav-links{
+display:flex;
+gap:38px;
+font-size:14px;
+}
+
+.nav-actions{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.icon-circle{
+width:40px;
+height:40px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+cursor:pointer;
+}
+
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+margin-top:60px;
+padding:10px 30px 0;
+}
+
+.award{
+display:inline-flex;
+align-items:center;
+gap:10px;
+background:white;
+padding:10px 18px;
+border-radius:50px;
+margin-bottom:28px;
+font-size:13px;
+}
+
+.hero h1{
+font-size:78px;
+line-height:0.95;
+margin-bottom:28px;
+font-weight:800;
+letter-spacing:-2px;
+}
+
+.hero p{
+font-size:22px;
+color:#555;
+line-height:1.7;
+max-width:520px;
+}
+
+.hero-buttons{
+margin-top:35px;
+display:flex;
+gap:20px;
+}
+
+.primary-btn{
+background:#f4b16e;
+border:none;
+color:#111;
+font-weight:700;
+border-radius:50px;
+padding:18px 32px;
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+box-shadow:0 15px 30px rgba(244,177,110,0.35);
+}
+
+.secondary-btn{
+background:white;
+border:none;
+border-radius:50px;
+padding:18px 28px;
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+}
+
+.viewer-card{
+background:linear-gradient(to bottom,#f3f3f3,#ececec);
+border-radius:34px;
+height:560px;
+position:relative;
+overflow:hidden;
+}
+
+#foodCanvas{
+position:absolute;
+inset:0;
+width:100% !important;
+height:100% !important;
+}
+
+.viewer-controls{
+position:absolute;
+bottom:22px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(255,255,255,0.9);
+border-radius:50px;
+padding:10px 16px;
+display:flex;
+gap:16px;
+z-index:5;
+}
+
+.viewer-btn{
+width:46px;
+height:46px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+border:none;
+}
+
+.categories{
+display:flex;
+gap:16px;
+margin-top:70px;
+padding:0 30px;
+overflow:auto;
+}
+
+.cat{
+padding:14px 22px;
+border-radius:50px;
+background:white;
+display:flex;
+align-items:center;
+gap:10px;
+white-space:nowrap;
+font-size:14px;
+}
+
+.cat.active{
+background:#f4b16e;
+}
+
+.section-header{
+display:flex;
+align-items:end;
+justify-content:space-between;
+margin:70px 30px 30px;
+}
+
+.section-header h2{
+font-size:52px;
+margin-bottom:10px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:26px;
+padding:0 30px 40px;
+}
+
+.food-card{
+background:white;
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 20px 40px rgba(0,0,0,0.06);
+}
+
+.food-image{
+height:260px;
+overflow:hidden;
+}
+
+.food-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.card-body{
+padding:24px;
+}
+
+.card-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.card-top h3{
+font-size:30px;
+}
+
+.desc{
+color:#666;
+line-height:1.7;
+margin-bottom:20px;
+font-size:15px;
+}
+
+.meta{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+color:#777;
+font-size:13px;
+margin-bottom:24px;
+}
+
+.card-footer{
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.price{
+font-size:42px;
+font-weight:800;
+}
+
+.add-wrap{
+display:flex;
+gap:10px;
+}
+
+.small-btn{
+width:54px;
+height:54px;
+border-radius:16px;
+border:1px solid rgba(0,0,0,0.1);
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.small-btn:hover{
+background:#f4b16e;
+}
+
+.add-btn{
+padding:0 26px;
+border:none;
+border-radius:16px;
+background:#f4b16e;
+font-weight:700;
+cursor:pointer;
+}
+
+#modelModal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(10px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.modal-box{
+width:90%;
+max-width:1200px;
+height:90vh;
+background:#111;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+}
+
+#popupCanvas{
+width:100%;
+height:100%;
+}
+
+.closeModal{
+position:absolute;
+top:20px;
+right:20px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:rgba(255,255,255,0.1);
+color:white;
+cursor:pointer;
+z-index:20;
+}
+
+@media(max-width:1024px){
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.cards{
+grid-template-columns:1fr 1fr;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+}
+
+@media(max-width:768px){
+
+body{
+padding:10px;
+}
+
+.app{
+padding:12px;
+border-radius:18px;
+}
+
+.navbar{
+height:auto;
+padding:16px;
+flex-direction:column;
+gap:16px;
+}
+
+.nav-links{
+gap:18px;
+flex-wrap:wrap;
+justify-content:center;
+font-size:13px;
+}
+
+.nav-actions{
+width:100%;
+justify-content:center;
+}
+
+.hero{
+grid-template-columns:1fr;
+padding:10px;
+margin-top:30px;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.primary-btn,
+.secondary-btn{
+width:100%;
+justify-content:center;
+}
+
+.viewer-card{
+height:400px;
+}
+
+.cards{
+grid-template-columns:1fr;
+padding:0 10px 30px;
+}
+
+.section-header h2{
+font-size:34px;
+}
+
+.card-footer{
+flex-direction:column;
+align-items:flex-start;
+gap:16px;
+}
+
+.add-wrap{
+width:100%;
+}
+
+.add-btn{
+flex:1;
+height:50px;
+}
+
+.modal-box{
+width:96%;
+height:85vh;
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-
-  <section class="hero">
-
-
-    <div class="glow g1"></div>
-
-    <div class="glow g2"></div>
-
-
-    <div class="container">
-
-
-      <!-- 3D MODEL TOP -->
-
-      <div class="top">
-
-        <canvas id="canvas"></canvas>
-
-      </div>
-
-
-
-      <!-- MENU BOTTOM -->
-
-      <div class="bottom">
-
-        <div class="glass">
-
-
-          <div style="text-align:center;">
-
-            <div class="tag">
-              Premium Gujarati Cafe
-            </div>
-
-          </div>
-
-
-          <h1>Qubeso</h1>
-
-
-          <p class="sub">
-
-            Interactive 3D food menu experience with
-            premium modern cafe presentation.
-
-          </p>
-
-
-
-          <div class="menu">
-
-
-            <div class="dish">
-
-              <div class="dish-left">
-
-                <h2>Kachori</h2>
-
-                <span>
-                  Crispy spicy Gujarati kachori
-                </span>
-
-              </div>
-
-              <div class="price">
-                ₹500
-              </div>
-
-            </div>
-
-
-
-            <div class="dish">
-
-              <div class="dish-left">
-
-                <h2>Bhakharvadi</h2>
-
-                <span>
-                  Crunchy masala filled snack
-                </span>
-
-              </div>
-
-              <div class="price">
-                ₹300
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="buttons">
-
-            <button class="primary">
-              Order Now
-            </button>
-
-            <button class="secondary">
-              Explore Menu
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-
-
-  <!-- IMPORTMAP -->
-
-  <script type="importmap">
-
-  {
-    "imports": {
-
-      "three":
-      "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
-
+<div class="app">
+
+<div class="navbar">
+
+<div class="logo">
+<div class="logo-icon">
+<iconify-icon icon="lucide:wheat"></iconify-icon>
+</div>
+QUBESO
+</div>
+
+<div class="nav-actions">
+<div class="icon-circle" id="searchBtn">
+<iconify-icon icon="lucide:search"></iconify-icon>
+</div>
+<div class="icon-circle" id="cartBtn">
+<iconify-icon icon="lucide:shopping-bag"></iconify-icon>
+</div>
+<div class="icon-circle" id="themeBtn">
+<iconify-icon icon="lucide:moon"></iconify-icon>
+</div>
+</div>
+
+</div>
+
+<div class="hero">
+
+<div>
+
+<div class="award">
+✨ Award Winning Culinary Experience
+</div>
+
+<h1>
+Taste the<br>
+Future of<br>
+Fine Dining.
+</h1>
+
+<p>
+Immerse yourself in a world of exquisite flavors.
+Explore our interactive 3D menu and experience gastronomy like never before.
+</p>
+
+<div class="hero-buttons">
+
+<button class="primary-btn" id="orderBtn">
+Order Now
+<iconify-icon icon="lucide:arrow-right"></iconify-icon>
+</button>
+
+<button class="secondary-btn" id="videoBtn">
+<iconify-icon icon="lucide:play"></iconify-icon>
+Watch Video
+</button>
+
+</div>
+
+</div>
+
+<div class="viewer-card">
+<canvas id="foodCanvas"></canvas>
+
+<div class="viewer-controls">
+<button class="viewer-btn" id="rotateBtn">
+<iconify-icon icon="lucide:rotate-3d"></iconify-icon>
+</button>
+<button class="viewer-btn" id="zoomInBtn">
+<iconify-icon icon="lucide:zoom-in"></iconify-icon>
+</button>
+<button class="viewer-btn" id="zoomOutBtn">
+<iconify-icon icon="lucide:zoom-out"></iconify-icon>
+</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="categories">
+<div class="cat active">⭐ Chef Specials</div>
+<div class="cat">🍕 Pizza</div>
+<div class="cat">🍔 Burgers</div>
+<div class="cat">🍝 Pasta</div>
+<div class="cat">🥤 Drinks</div>
+</div>
+
+<div class="section-header">
+<div>
+<h2>Most Ordered</h2>
+<p>Handpicked favorites by our community.</p>
+</div>
+</div>
+
+<div class="cards">
+
+<div class="food-card">
+<div class="food-image">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" />
+</div>
+<div class="card-body">
+<div class="card-top">
+<h3>Truffle Pizza</h3>
+⭐ 4.9
+</div>
+<div class="desc">Wood-fired artisan crust topped with mushrooms and mozzarella.</div>
+<div class="meta">
+<div>⏱ 25 min</div>
+<div>🌶 Mild</div>
+<div>🥗 Veg</div>
+</div>
+<div class="card-footer">
+<div class="price">RS.24</div>
+<div class="add-wrap">
+<button class="small-btn open-3d" data-model="./pizza.glb">
+<iconify-icon icon="lucide:box"></iconify-icon>
+</button>
+<button class="small-btn add-cart">
+<iconify-icon icon="lucide:shopping-bag"></iconify-icon>
+</button>
+<button class="add-btn">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="food-card">
+<div class="food-image">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop" />
+</div>
+<div class="card-body">
+<div class="card-top">
+<h3>Wagyu Burger</h3>
+⭐ 5.0
+</div>
+<div class="desc">Premium Wagyu burger with cheddar and onions.</div>
+<div class="meta">
+<div>⏱ 35 min</div>
+<div>🍖 Non Veg</div>
+</div>
+<div class="card-footer">
+<div class="price">RS.45</div>
+<div class="add-wrap">
+<button class="small-btn open-3d" data-model="./burger.glb">
+<iconify-icon icon="lucide:box"></iconify-icon>
+</button>
+<button class="small-btn add-cart">
+<iconify-icon icon="lucide:shopping-bag"></iconify-icon>
+</button>
+<button class="add-btn">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="food-card">
+<div class="food-image">
+<img src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=1200&auto=format&fit=crop" />
+</div>
+<div class="card-body">
+<div class="card-top">
+<h3>Lobster Ravioli</h3>
+⭐ 4.8
+</div>
+<div class="desc">Handmade pasta parcels with lobster cream sauce.</div>
+<div class="meta">
+<div>⏱ 50 min</div>
+<div>🦞 Seafood</div>
+</div>
+<div class="card-footer">
+<div class="price">RS.32</div>
+<div class="add-wrap">
+<button class="small-btn open-3d" data-model="./pasta.glb">
+<iconify-icon icon="lucide:box"></iconify-icon>
+</button>
+<button class="small-btn add-cart">
+<iconify-icon icon="lucide:shopping-bag"></iconify-icon>
+</button>
+<button class="add-btn">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="modelModal">
+<div class="modal-box">
+<button class="closeModal">
+<iconify-icon icon="lucide:x"></iconify-icon>
+</button>
+<canvas id="popupCanvas"></canvas>
+</div>
+</div>
+
+<script type="module">
+
+import * as THREE from "three";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/meshopt_decoder.module.js";
+
+/* -------------------------------- */
+/* HERO 3D */
+/* -------------------------------- */
+
+const canvas = document.getElementById("foodCanvas");
+const scene = new THREE.Scene();
+scene.background = null;
+
+const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+camera.position.set(0, 0, 5);
+
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+  antialias: true,
+  powerPreference: "high-performance"
+});
+renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+/* LIGHTS */
+const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 4);
+directionalLight.position.set(5, 10, 7);
+scene.add(directionalLight);
+
+const orangeLight = new THREE.PointLight(0xf4b16e, 8);
+orangeLight.position.set(-5, 5, 5);
+scene.add(orangeLight);
+
+/* CONTROLS */
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.enablePan = false;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.5;
+controls.minDistance = 2;
+controls.maxDistance = 8;
+
+/* LOAD HERO MODEL */
+let heroModel;
+const loader = new GLTFLoader();
+loader.setMeshoptDecoder(MeshoptDecoder);
+
+loader.load(
+  "./model1.glb",
+  (gltf) => {
+    heroModel = gltf.scene;
+    scene.add(heroModel);
+
+    const box = new THREE.Box3().setFromObject(heroModel);
+    const center = box.getCenter(new THREE.Vector3());
+    heroModel.position.sub(center);
+
+    const size = box.getSize(new THREE.Vector3()).length();
+    const scale = 4 / size;
+    heroModel.scale.setScalar(scale);
+    heroModel.position.y = -0.2;
+
+    heroModel.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+  },
+  (xhr) => {
+    console.log(Math.round((xhr.loaded / xhr.total) * 100) + "% loaded");
+  },
+  (error) => {
+    console.error(error);
+  }
+);
+
+/* HERO ANIMATION */
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+/* -------------------------------- */
+/* HERO BUTTONS */
+/* -------------------------------- */
+
+document.getElementById("rotateBtn").addEventListener("click", () => {
+  controls.autoRotate = !controls.autoRotate;
+});
+
+document.getElementById("zoomInBtn").addEventListener("click", () => {
+  camera.position.z = Math.max(camera.position.z - 0.5, 2);
+});
+
+document.getElementById("zoomOutBtn").addEventListener("click", () => {
+  camera.position.z = Math.min(camera.position.z + 0.5, 8);
+});
+
+/* -------------------------------- */
+/* SIMPLE BUTTONS */
+/* -------------------------------- */
+
+document.getElementById("orderBtn").addEventListener("click", () => {
+  alert("Order placed successfully");
+});
+
+document.getElementById("videoBtn").addEventListener("click", () => {
+  window.open("https://youtube.com", "_blank");
+});
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+  alert("Search feature coming soon");
+});
+
+document.getElementById("cartBtn").addEventListener("click", () => {
+  alert("Cart opened");
+});
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+document.querySelectorAll(".add-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.innerHTML = "Added";
+    setTimeout(() => {
+      btn.innerHTML = "+ Add";
+    }, 1500);
+  });
+});
+
+/* -------------------------------- */
+/* GLITCH-FREE POPUP MODAL LOGIC */
+/* -------------------------------- */
+
+const modal = document.getElementById("modelModal");
+const popupCanvas = document.getElementById("popupCanvas");
+const closeModal = document.querySelector(".closeModal");
+
+// We declare variables here but initialize them ONLY ONCE.
+// Destroying/Recreating WebGLRenderers is what caused the severe glitches.
+let popupRenderer, popupScene, popupCamera, popupControls, popupModel;
+let popupInitialized = false;
+
+const popupLoader = new GLTFLoader();
+popupLoader.setMeshoptDecoder(MeshoptDecoder);
+
+function initPopupWebGL() {
+  if (popupInitialized) return; // Prevent creating multiple renderers
+
+  popupScene = new THREE.Scene();
+  
+  // Camera
+  popupCamera = new THREE.PerspectiveCamera(45, popupCanvas.clientWidth / popupCanvas.clientHeight, 0.1, 1000);
+  popupCamera.position.set(0, 0, 5);
+
+  // Renderer
+  popupRenderer = new THREE.WebGLRenderer({
+    canvas: popupCanvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+  popupRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  popupRenderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  /* LIGHTS */
+  const popupAmbient = new THREE.AmbientLight(0xffffff, 2.5);
+  popupScene.add(popupAmbient);
+
+  const popupDirectional = new THREE.DirectionalLight(0xffffff, 5);
+  popupDirectional.position.set(5, 10, 7);
+  popupScene.add(popupDirectional);
+
+  const popupOrange = new THREE.PointLight(0xf4b16e, 8);
+  popupOrange.position.set(-5, 5, 5);
+  popupScene.add(popupOrange);
+
+  /* CONTROLS */
+  popupControls = new OrbitControls(popupCamera, popupRenderer.domElement);
+  popupControls.enableDamping = true;
+  popupControls.enablePan = false;
+  popupControls.autoRotate = true;
+  popupControls.autoRotateSpeed = 2;
+  popupControls.minDistance = 2;
+  popupControls.maxDistance = 8;
+
+  /* RENDER LOOP */
+  function popupAnimate() {
+    requestAnimationFrame(popupAnimate);
+    // Only render/update when the modal is actually visible to save performance
+    if (modal.style.display === "flex") {
+      popupControls.update();
+      popupRenderer.render(popupScene, popupCamera);
     }
   }
+  popupAnimate();
 
-  </script>
+  popupInitialized = true;
+}
 
+document.querySelectorAll(".open-3d").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const modelPath = btn.dataset.model;
+    openPopupModel(modelPath);
+  });
+});
 
+closeModal.addEventListener("click", closePopup);
 
-  <!-- THREE JS -->
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closePopup();
+  }
+});
 
-  <script type="module">
+function closePopup() {
+  modal.style.display = "none";
+}
 
-    import * as THREE from "three";
+function openPopupModel(modelPath) {
+  modal.style.display = "flex";
 
-    import { OrbitControls }
+  initPopupWebGL();
 
-    from
-    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+  // Resize canvas safely AFTER it's set to display: flex so dimensions aren't 0
+  popupCamera.aspect = popupCanvas.clientWidth / popupCanvas.clientHeight;
+  popupCamera.updateProjectionMatrix();
+  popupRenderer.setSize(popupCanvas.clientWidth, popupCanvas.clientHeight, false);
 
-    import { GLTFLoader }
+  // If there's an existing model in the scene, remove it before adding the new one
+  if (popupModel) {
+    popupScene.remove(popupModel);
+    popupModel = null;
+  }
 
-    from
-    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+  /* LOAD NEW MODEL */
+  popupLoader.load(
+    modelPath,
+    (gltf) => {
+      popupModel = gltf.scene;
+      popupScene.add(popupModel);
 
-    import { MeshoptDecoder }
+      const box = new THREE.Box3().setFromObject(popupModel);
+      const center = box.getCenter(new THREE.Vector3());
+      popupModel.position.sub(center);
 
-    from
-    "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/meshopt_decoder.module.js";
+      const size = box.getSize(new THREE.Vector3()).length();
+      const scale = 4 / size;
+      popupModel.scale.setScalar(scale);
+      popupModel.position.y = -0.2;
 
-
-
-    const canvas =
-      document.getElementById("canvas");
-
-
-
-    // SCENE
-
-    const scene =
-      new THREE.Scene();
-
-
-
-    // CAMERA
-
-    const camera =
-      new THREE.PerspectiveCamera(
-
-        45,
-
-        canvas.clientWidth /
-        canvas.clientHeight,
-
-        0.1,
-
-        1000
-
-      );
-
-    camera.position.set(0,0,4);
-
-
-
-    // RENDERER
-
-    const renderer =
-      new THREE.WebGLRenderer({
-
-        canvas,
-
-        antialias:true,
-
-        alpha:true
-
+      popupModel.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
       });
-
-    renderer.setSize(
-
-      canvas.clientWidth,
-
-      canvas.clientHeight
-
-    );
-
-    renderer.setPixelRatio(
-      window.devicePixelRatio
-    );
-
-
-
-    // LIGHTS
-
-    const ambientLight =
-      new THREE.AmbientLight(
-        0xffffff,
-        5
-      );
-
-    scene.add(ambientLight);
-
-
-
-    const directionalLight =
-      new THREE.DirectionalLight(
-        0xffffff,
-        8
-      );
-
-    directionalLight.position.set(
-      5,
-      10,
-      7
-    );
-
-    scene.add(directionalLight);
-
-
-
-    const orangeLight =
-      new THREE.PointLight(
-        0xf59e0b,
-        20
-      );
-
-    orangeLight.position.set(
-      -5,
-      5,
-      5
-    );
-
-    scene.add(orangeLight);
-
-
-
-
-    // CONTROLS
-
-    const controls =
-      new OrbitControls(
-        camera,
-        renderer.domElement
-      );
-
-    controls.enableDamping = true;
-
-    controls.enablePan = false;
-
-    controls.minDistance = 2;
-
-    controls.maxDistance = 8;
-
-
-
-
-    // MODEL
-
-    let model;
-
-    const loader =
-      new GLTFLoader();
-
-    loader.setMeshoptDecoder(
-      MeshoptDecoder
-    );
-
-
-
-    loader.load(
-
-      "./model1.glb",
-
-      function(gltf){
-
-        model = gltf.scene;
-
-        scene.add(model);
-
-
-
-
-        // CENTER MODEL
-
-        const box =
-          new THREE.Box3()
-          .setFromObject(model);
-
-        const center =
-          box.getCenter(
-            new THREE.Vector3()
-          );
-
-        model.position.sub(center);
-
-
-
-
-        // PERFECT SCALE
-
-        const size =
-          box.getSize(
-            new THREE.Vector3()
-          ).length();
-
-        const scale =
-          5 / size;
-
-        model.scale.setScalar(scale);
-
-
-
-
-        // POSITION TOP
-
-        model.position.y = 0.3;
-
-
-
-
-        // ROTATION
-
-        model.rotation.y = 0.5;
-
-      }
-
-    );
-
-
-
-
-    // ANIMATE
-
-    function animate(){
-
-      requestAnimationFrame(
-        animate
-      );
-
-      if(model){
-
-        model.rotation.y += 0.003;
-
-      }
-
-      controls.update();
-
-      renderer.render(
-        scene,
-        camera
-      );
-
+    },
+    undefined,
+    (error) => {
+      console.error(error);
     }
+  );
+}
 
-    animate();
+/* -------------------------------- */
+/* RESIZE FIXES */
+/* -------------------------------- */
 
+window.addEventListener("resize", () => {
+  // Update main viewer
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
+  // Safely update popup ONLY if it's currently open to avoid 0x0 scale glitch
+  if (popupInitialized && modal.style.display === "flex") {
+    popupCamera.aspect = popupCanvas.clientWidth / popupCanvas.clientHeight;
+    popupCamera.updateProjectionMatrix();
+    popupRenderer.setSize(popupCanvas.clientWidth, popupCanvas.clientHeight, false);
+  }
+});
 
-
-    // RESIZE
-
-    window.addEventListener(
-
-      "resize",
-
-      ()=>{
-
-        camera.aspect =
-
-          canvas.clientWidth /
-
-          canvas.clientHeight;
-
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(
-
-          canvas.clientWidth,
-
-          canvas.clientHeight
-
-        );
-
-      }
-
-    );
-
-  </script>
+</script>
 
 </body>
-
 </html>
